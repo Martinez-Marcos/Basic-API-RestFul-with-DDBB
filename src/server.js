@@ -110,6 +110,7 @@ server.delete('/api/v1/muebles/:codigo', async (req, res) => {
 
         await collection.deleteOne({ codigo: { $eq: Number(codigo) } });
 
+
         res.status(200).send({ message: 'Registro eliminado' });
     } catch (error) {
         console.log(error.message);
@@ -120,7 +121,7 @@ server.delete('/api/v1/muebles/:codigo', async (req, res) => {
 });
 
 server.use('*', (req, res) => {
-    res.status(404).send(`<h1>Error 404</h1><h3>La URL indicada no existe en este servidor</h3>`);
+    res.status(404).send({ message: 'La URL indicada no existe' });
 });
 
 server.listen(process.env.SERVER_PORT, process.env.SERVER_HOST, () => {
